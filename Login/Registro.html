@@ -21,38 +21,42 @@
     <div class="contenido">
         <h1 class="text-center">Registro</h1>
         <form>
-            <div class="form-group">
+            <div class="form-group" id="recorreo">
                 <label class="form-label">Correo</label>
                 <label class="obl">:</label>
-                <input class="form-control" type="email" required="obligatorio" placeholder="email@example.cl">
+                <input class="form-control" type="email">
             </div>
-            <div class="for-group">
+            <div class="for-group" id="renombre">
                 <label class="form-label">Nombre</label>
                 <label class="obl">:</label>
-                <input class="form-control" type="text" required="obligatorio" pattern="[a-zA-Z]+">
+                <input class="form-control" type="text">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="recontraseña">
                 <label class="form-label">Contraseña</label>
                 <label class="obl">:</label>
-                <input class="form-control" type="password" required="obligatorio" placeholder="*********">
+                <input class="form-control" type="password">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="recontraseña2">
                 <label class="form-label">Confirmar contraseña</label>
                 <label class="obl">:</label>
-                <input class="form-control" type="password" required="obligatorio" placeholder="*********">
+                <input class="form-control" type="password" >
             </div>
-            <div class="form-group">
+            <div class="form-group" id="telefono"> 
                 <label class="form-label">Telefono</label>
                 <label class="obl">:</label>
-                <input class="form-control" type="text" required="obligatorio" pattern="[0-9]+" >
+                <input class="form-control" type="text">
             </div>
+            
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" required="obligatorio">
                 <label class="form-check-label" for="check">Acepto Terminos y Condiciones</label>
                 <label class="obl">.</label>
             </div>
-            <input id="boton" class="btn w-100" type="submit" value="Enviar" style="background-color: #2f2f;">
+            <input id="button" type="button" onclick="registro()" name="commit" value="ENVIAR" style="background-color: #2f2f;"/>
+
+            
         </form>
+        <script src="main.js"></script>
     </div>
 </body>
 </html>
