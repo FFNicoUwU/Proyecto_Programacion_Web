@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Confección de Ropa</title>
+</head>
+
+<body>
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Confección de Ropa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Carrusel -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/ofertas.webp' %}" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/ofertas2.webp' %}" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/ofertas3.webp' %}" class="d-block w-100" alt="Slide 3">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Siguiente</span>
+    </a>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container mt-4">
+    <h1>Bienvenido a nuestra página de confección de ropa</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed magna dolor. Nullam consectetur semper
+      consequat. Proin sollicitudin neque sed nibh iaculis, sed pharetra arcu aliquam. Integer tempor elit non ipsum
+      tincidunt, ac finibus est egestas. Vestibulum tincidunt lectus eget justo blandit dapibus. Phasellus euismod ante
+      sed facilisis iaculis.</p>
+    
+    <h2>Productos destacados</h2>
+    <div class="card-deck">
+      <div class="card">
+        <img src="{% static 'img/entero/entero.jpg' %}" class="card-img-top" alt="Producto 1">
+        <div class="card-body">
+          <h5 class="card-title">Producto 1</h5>
+          <p class="card-text">Descripción del producto 1</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/formal/formal2.jpg' %}" class="card-img-top" alt="Producto 2">
+        <div class="card-body">
+          <h5 class="card-title">Producto 2</h5>
+          <p class="card-text">Descripción del producto 2</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{% static 'img/vestido/vestido.jpg' %}" class="card-img-top" alt="Producto 3">
+        <div class="card-body">
+          <h5 class="card-title">AEROPOSTALE</h5>
+          <p class="card-text">VESTIDO AEROPOSTALE CORTO</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contenedor de temperatura -->
+    <div id="temperature-container" class="mt-4">
+      <h2>Temperatura actual:</h2>
+      <p id="weather-info"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3">
+    <div class="container text-center">
+      <p>Derechos de autor &copy; 2023 Confección de Ropa. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <!-- Script de la API de temperatura -->
+  <script src="{% static 'js/temperatura.js' %}"></script>
+</body>
+
+</html>

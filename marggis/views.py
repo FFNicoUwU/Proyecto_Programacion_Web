@@ -1,162 +1,60 @@
-from django.shortcuts import render
-from .models import Alumno, Genero
-from .forms import GeneroForm
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from .models import usuario as XD, Genero 
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
+# Create your views here.
 def index(request):
-    alumnos = Alumno.objects.all()
-    context = {"alumnos": alumnos}
-    return render(request, 'index.html', context)
+    context={}
+    return render(request, 'paginas/index.html', context)
 
-def crud(request):
-    alumnos = Alumno.objects.all()
-    context = {"alumnos": alumnos}
-    return render(request, 'alumnos_list.html', context)
+#REGISTRO
+def register(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        existing_user = User.objects.filter(username=username).exists()
+        if existing_user:
+            messages.error(request, 'El nombre de usuario ya está registrado.')
+            return redirect('registro')
 
-def alumnosAdd(request):
-    if request.method != "POST":
-        # no es un POST por lo tanto se muestra el formulario para agregar
-        generos = Genero.objects.all()
-        context = {"generos": generos}
-        return render(request, 'alumnos_add.html', context)
+        genero_id = request.POST.get('genero')
+        correo = request.POST.get('correo')
+        contraseña = request.POST.get('contraseña')
+
+        if User.objects.filter(username=username).exists():
+            mensaje = 'El usuario ya está registrado. Por favor, elige otro nombre de usuario.'
+            generos = Genero.objects.all()
+            context = {'generos': generos, 'mensaje': mensaje}
+            return render(request, 'paginas/registro.html', context)
+
+        genero = Genero.objects.get(id_genero=genero_id)
+        user = User.objects.create_user(username=username, email=correo, password=contraseña)
+        obj = XD.objects.create(usuario=user, id_genero=genero, correo=correo, contraseña=contraseña)
+
+        mensaje = 'Registro exitoso. Ahora puedes iniciar sesión.'
+        context = {'mensaje': mensaje}
+        return render(request, 'paginas/login.html', context)
     else:
-        print("--->>>> llego al else de addAlumnos crea el objeto ")
-        # Es un POST, por lo tanto se recuperan los datos del formulario
-        # y se graban en la tabla
-        rut = request.POST["rut"]
-        nombre = request.POST["nombre"]
-        aPaterno = request.POST["paterno"]
-        aMaterno = request.POST["materno"]
-        fechaNac = request.POST["fechaNac"]
-        genero = request.POST["genero"]
-        telefono = request.POST["telefono"]
-        email = request.POST["email"]
-        direccion = request.POST["direccion"]
-        activo = "1"  # ---> esta linea no será tomada en cuenta en la creación dado que se asigna 1 arbitrariamente
-
-        objGenero = Genero.objects.get(id_genero=genero)
-        obj = Alumno.objects.create(rut=rut,
-                                    nombre=nombre,
-                                    apellido_paterno=aPaterno,
-                                    apellido_materno=aMaterno,
-                                    fecha_nacimiento=fechaNac,
-                                    id_genero=objGenero,
-                                    telefono=telefono,
-                                    email=email,
-                                    direccion=direccion,
-                                    activo=1)
-        obj.save()
-        context = {"mensaje": "OK, datos grabados..."}
-        return render(request, 'alumnos_add.html', context)
-
-
-def alumnos_del(request, pk):
-    context = {}
-    try:
-        alumno = Alumno.objects.get(rut=pk)
-        print("REGISTRO A ELIMINAR============>>>")
-        print(alumno)
-        alumno.delete()
-        print("ELIMINADOR============>>>")
-        mensaje = "Bien, dato eliminado!!!"
-        alumnos = Alumno.objects.all()
-        context = {"alumnos": alumnos, "mensaje": mensaje}
-        return render(request, "alumnos_list.html", context)
-    except:
-        mensaje = "Error, el rut  no existe!!!"
-        alumnos = Alumno.objects.all()
-        context = {"alumnos": alumnos, "mensaje": mensaje}
-        return render(request, "alumnos_list.html", context)
-
-
-def alumnos_findEdit(request, pk):
-    if pk != "":
-        alumno = Alumno.objects.get(rut=pk)
-        print(alumno)
         generos = Genero.objects.all()
-        print("generos--->>>")
-        print(generos)
-
-        print(type(alumno.id_genero.genero))
-        context = {"alumno": alumno, "generos": generos}
-        if alumno:
-            return render(request, "alumnos_edit.html", context)
+        context = {'generos': generos}
+        return render(request, 'paginas/registro.html', context)
+#LOGIN
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        # Verificar las credenciales del usuario
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            # Credenciales válidas, iniciar sesión
+            login(request,user)
+            return redirect('index')
         else:
-            context = {"mensaje": "Error, rut no existe"}
-            return render(request, "alumnos_list.html", context)
-
-
-def alumnosUpdate(request):
-    if request.method == "POST":
-        # Es un POST, por lo tanto se recuperan los datos del formulario
-        # y se graban en la tabla
-        rut = request.POST["rut"]
-        nombre = request.POST["nombre"]
-        aPaterno = request.POST["paterno"]
-        aMaterno = request.POST["materno"]
-        fechaNac = request.POST["fechaNac"]
-        print("=========>>>")
-        print(fechaNac)
-        print("<<<<=========")
-        genero = request.POST["genero"]
-        telefono = request.POST["telefono"]
-        email = request.POST["email"]
-        direccion = request.POST["direccion"]
-        activo = "1"
-
-        objGenero = Genero.objects.get(id_genero=genero)
-        alumno = Alumno()
-        alumno.rut = rut
-        alumno.nombre = nombre
-        alumno.apellido_paterno = aPaterno
-        alumno.apellido_materno = aMaterno
-        alumno.fecha_nacimiento = fechaNac
-        alumno.id_genero = objGenero
-        alumno.telefono = telefono
-        alumno.email = email
-        alumno.direccion = direccion
-        alumno.activo = 1
-        alumno.save()
-
-        generos = Genero.objects.all()
-        context = {"mensaje": "OK, datos actualizados...",
-                   "generos": generos, "alumno": alumno}
-        return render(request, 'alumnos_edit.html', context)
-    else:
-        # NO es por POST, por lo tanto solo se muestra el formulario para agregar
-        alumnos = Alumno.objects.all()
-        context = {"alumnos": alumnos}
-        return render(request, 'alumnos_list.html', context)
-
-def listadoSQL(request):
-    alumnos = Alumno.objects.raw('SELECT * FROM alumnos_alumno')
-    print(alumnos)
-    context = {"alumnos": alumnos}
-    return render(request, 'listadoSQL.html', context)
-
-
-def generosAdd(request):
-    if request.method == "POST":
-        form = GeneroForm(request.POST)
-        if form.is_valid():
-            model_instance = form.save(commit=False)
-            model_instance.save()
-            form = GeneroForm()
-            return render(request, "agregar_genero.html",{'form': form})
-    else:
-        form = GeneroForm()
-        return render(request, "agregar_genero.html",{'form': form})
-
-
-
-
-
-
-
-
-
-
-
-
-
+            # Credenciales inválidas, mostrar mensaje de error
+            messages.error(request, 'Usuario o contraseña incorrectos.')
+            return redirect('login')
+    
+    return render(request, 'paginas/login.html')
 
