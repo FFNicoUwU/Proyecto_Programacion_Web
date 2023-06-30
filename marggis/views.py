@@ -3,6 +3,7 @@ from .models import usuario as XD, Genero, Producto
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from .forms import ContactoForm
 
 # Create your views here.
 def index(request):
@@ -14,9 +15,27 @@ def index(request):
 def productos(request):
     productos = Producto.objects.all()
     data = {
-        'productos' : productos
+        'productos': productos
     }
     return render(request, 'paginas/productos.html', data)
+
+#CONTACTO
+
+def contacto(request):
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Realiza acciones adicionales o redirige a otra página
+            return redirect('contacto') 
+    else:
+        form = ContactoForm()
+
+    data = {
+        'form': form
+    }
+    return render(request, 'paginas/contacto.html', data)
+
 
 #REGISTRO
 def register(request):

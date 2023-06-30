@@ -1,0 +1,18 @@
+/* login.css */
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  

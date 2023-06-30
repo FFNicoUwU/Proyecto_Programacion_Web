@@ -1,10 +1,13 @@
 from django import forms 
-from .models import Genero 
+from .models import Genero, Contacto 
 
-
-from django.forms import ModelForm
-
-class GeneroForm(ModelForm):
+class GeneroForm(forms.ModelForm):
     class Meta:
         model = Genero
         fields = "__all__"
+
+
+class ContactoForm(forms.ModelForm):
+    class Meta:
+        model = Contacto
+        fields = '__all__'
