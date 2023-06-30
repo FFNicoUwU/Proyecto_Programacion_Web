@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/producto.css' %}">
   <title>Confección de Ropa</title>
 </head>
 
@@ -36,6 +37,8 @@
         </li>
     </ul>
     </div>
+    <br>
+    <br>
   </nav>
     {% load humanize %}
     <!--Productos-->
@@ -56,7 +59,8 @@
         </div>
         {% endfor %}
     </div>
- 
+    <br>
+    <br>
     <!-- Contenedor de temperatura -->
     <div id="temperature-container" class="mt-4">
       <h2>Temperatura actual:</h2>
