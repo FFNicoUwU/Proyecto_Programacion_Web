@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import usuario as XD, Genero 
+from .models import usuario as XD, Genero, Producto
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -8,6 +8,15 @@ from django.contrib import messages
 def index(request):
     context={}
     return render(request, 'paginas/index.html', context)
+
+#PRODUCTO
+
+def productos(request):
+    productos = Producto.objects.all()
+    data = {
+        'productos' : productos
+    }
+    return render(request, 'paginas/productos.html', data)
 
 #REGISTRO
 def register(request):
