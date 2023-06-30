@@ -18,3 +18,12 @@ class usuario(models.Model):
     def __str__(self):
         return str(self.usuario)
 
+
+class Producto(models.Model):
+    id_nombre = models.AutoField(db_column='idNombre',primary_key=True) 
+    nombre = models.CharField(max_length=50)
+    precio = models.IntegerField()
+    descripcion = models.TextField()
+    imagen = models.ImageField(upload_to="productos", null=True)
+    def __str__(self):
+        return str(self.nombre)
