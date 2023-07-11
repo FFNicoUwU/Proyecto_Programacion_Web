@@ -12,7 +12,11 @@
 <body>
   <!-- Barra de navegación -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Marggis</a>
+    <div class="card-deck">
+            <div class="logo_principal">
+                <img src="{% static 'img/iconos/logo_principal.png' %}" 
+                style="width: 100px; height:auto;">  
+        </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -32,10 +36,10 @@
           <a class="nav-link" href="contacto">Contacto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login">Login</a>
+          <a class="nav-link" href="login">Iniciar Sesión</a>
         </li>
       </ul>
-    </div>
+    </div>S
   </nav>
 
   <!-- Carrusel -->
@@ -69,32 +73,40 @@
   <!-- Contenido principal -->
   <div class="container mt-4">
     <h1>Bienvenido a nuestra página de confección de ropa</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed magna dolor. Nullam consectetur semper
-      consequat. Proin sollicitudin neque sed nibh iaculis, sed pharetra arcu aliquam. Integer tempor elit non ipsum
-      tincidunt, ac finibus est egestas. Vestibulum tincidunt lectus eget justo blandit dapibus. Phasellus euismod ante
-      sed facilisis iaculis.</p>
+    <p>Empresa familiar que se dedica a la confección de alta costura y se enorgullece de ser accesible para todo tipo de clientes.<br>
+    <br> Nuestra marca se compromete a promover la inclusión de todas las tallas y tipos de cuerpos, manteniendo al mismo tiempo la exclusividad de cada modelo. 
+    Valoramos la individualidad de cada uno de nuestros clientes y nos esforzamos por brindarles una experiencia única.
+
+<br>
+<br> Además, contamos con un área especializada en la confección de ropa a medida, donde nuestros expertos artesanos trabajan en estrecha colaboración con los clientes para crear prendas personalizadas que se ajusten perfectamente a sus medidas y preferencias. 
+<br> Este servicio exclusivo nos permite ofrecer a nuestros clientes una experiencia de compra excepcional y satisfacer sus necesidades específicas.
+
+<br><br> Nos enorgullece ser una marca que promueve la inclusión y la exclusividad, y estamos comprometidos a brindar a nuestros clientes la mejor calidad en cada una de nuestras creaciones de alta costura.
     
-    <h2>Productos destacados</h2>
+    <h2>Productos Destacados</h2>
     <div class="card-deck">
       <div class="card">
         <img src="{% static 'img/entero/entero.jpg' %}" class="card-img-top" alt="Producto 1">
         <div class="card-body">
-          <h5 class="card-title">Producto 1</h5>
-          <p class="card-text">Descripción del producto 1</p>
+          <h5 class="card-title">Enterito Sofia:</h5>
+          <p class="card-text">Fabricado con tela viscosa Italiana. <br>
+          Ideal para temporada veraniega.</p>
         </div>
       </div>
       <div class="card">
         <img src="{% static 'img/formal/formal2.jpg' %}" class="card-img-top" alt="Producto 2">
         <div class="card-body">
-          <h5 class="card-title">Producto 2</h5>
-          <p class="card-text">Descripción del producto 2</p>
+          <h5 class="card-title">Conjunto Semi-Formal:</h5>
+          <p class="card-text">Fabricado con tela piel de durazno.<br>
+          Ideal para la oficina.</p>
         </div>
       </div>
       <div class="card">
         <img src="{% static 'img/vestido/vestido.jpg' %}" class="card-img-top" alt="Producto 3">
         <div class="card-body">
-          <h5 class="card-title">AEROPOSTALE</h5>
-          <p class="card-text">VESTIDO AEROPOSTALE CORTO</p>
+          <h5 class="card-title">Vestido Carmen:</h5>
+          <p class="card-text">Fabricado con tela lino Indu. <br> 
+          Ideal para la playa.</p>
         </div>
       </div>
     </div>

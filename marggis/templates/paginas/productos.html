@@ -13,7 +13,11 @@
 <body>
   <!-- Barra de navegación -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'index' %}">Marggis</a>
+    <div class="card-deck">
+            <div class="logo_principal">
+                <img src="{% static 'img/iconos/logo_principal.png' %}" 
+                style="width: 100px; height:auto;">  
+        </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,16 +37,18 @@
             <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
         </li>
     </ul>
     </div>
     <br>
     <br>
   </nav>
+  <br>
     {% load humanize %}
     <!--Productos-->
     <h2>Productos</h2>
+    <br>
     <div class="productos">
         {% for p in productos %}
         <div class="producto">
